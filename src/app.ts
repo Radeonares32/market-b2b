@@ -9,7 +9,7 @@ const server = http.createServer(app)
 app.set('view engine','ejs')
 app.set('views',path.join(path.resolve('./src'),'/views'))
 
-
+app.use(express.static(path.join(path.resolve('./src'),'/public')))
 
 
 server.listen(3000,()=>{
