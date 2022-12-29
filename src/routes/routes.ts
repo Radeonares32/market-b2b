@@ -1,0 +1,1 @@
+export * as homeRoutes from './index.routes'

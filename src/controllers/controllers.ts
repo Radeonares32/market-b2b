@@ -1,0 +1,1 @@
+export * as home from './index.controllers'

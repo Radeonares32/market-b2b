@@ -11,6 +11,10 @@ app.set('views',path.join(path.resolve('./src'),'/views'))
 
 app.use(express.static(path.join(path.resolve('./src'),'/public')))
 
+// Routes
+import { homeRoutes } from './routes/routes'
+
+app.use('/',homeRoutes.getHome)
 
 server.listen(3000,()=>{
     console.log(chalk.green("Server running"))
