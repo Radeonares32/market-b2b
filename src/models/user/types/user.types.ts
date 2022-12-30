@@ -3,7 +3,8 @@ export interface User extends Payment {
     surname: string,
     email:string,
     password:string,
-    image:string
+    image:string,
+    isAdmin:boolean
 }
 interface Payment {
     cardNumber:number,
