@@ -3,13 +3,12 @@
         "lib": [
             "ESNext"
         ],
-        
         "strict": true,
-        "module": "ESNext",
+        "module": "CommonJS",
         "alwaysStrict": true,
         "moduleResolution": "Node",
         "esModuleInterop": true,
-        "target": "ESNext",
+        "target": "ES6",
         "outDir": "./dist",
         "rootDir": "./src",
         "declaration": true,
