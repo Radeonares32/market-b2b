@@ -32,3 +32,8 @@ export const postSign: Handler = async (req, res) => {
         res.redirect('/admin?message=noUser')
     }
 }
+export const getLogout:Handler = async (req,res) => {
+    req.session.destroy(()=>{
+        res.redirect('/admin/sign?message=sLogout')
+    })
+}
