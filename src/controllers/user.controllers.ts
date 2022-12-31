@@ -5,17 +5,6 @@ import { userServices } from '../services/services'
 
 export const getSign: Handler = async (req, res) => {
     res.render('home/signin')
-    const User = new userServices.UserService("", "", "bugra@gmail.com")
-    const user = await User.find()
-    if (user.length > 0) {
-        
-       /*  //@ts-ignore
-        req.session.user = user[0].name
-        res.redirect('/') */
-    }
-    else {
-        res.redirect('/sign?message=noUser')
-    }
 }
 export const getLogin: Handler = (req, res) => {
     res.render('home/login')
@@ -30,4 +19,20 @@ export const postLogin: Handler = async (req, res) => {
     else {
         res.redirect('/login?message=noMatch')
     }
+}
+export const postSign:Handler = async (req,res) => {
+    const { email,password } = req.body
+    console.log(req.body)
+    const User = new userServices.UserService("", "", "bugra@gmail.com")
+    const user = await User.find()
+
+   /*  if (user.length > 0) {
+
+        //@ts-ignore
+        req.session.user = user[0].name
+        res.redirect('/')
+    }
+    else {
+        res.redirect('/sign?message=noUser')
+    } */
 }
