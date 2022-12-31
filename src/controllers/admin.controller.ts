@@ -3,12 +3,12 @@ import { Handler } from "express";
 //Models for testing
 import { UserModel } from '../models/models'
 
-export const getHome: Handler = (req, res) => {
+export const getHome: Handler = async (req, res) => {
     //@ts-ignore
     const admin = req.session.admin
-    console.log(admin)
     if(admin) {
-        res.render('admin/index',{admin})
+       const user = await UserModel.find()
+        res.render('admin/index',{admin,user})
     }
     else {
         res.redirect('/admin/sign?message=reqSign')
