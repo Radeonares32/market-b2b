@@ -36,7 +36,8 @@ app.use('/',
 )
 app.use('/admin',
     adminRoutes.getHome,
-    adminRoutes.getSign
+    adminRoutes.getSign,
+    adminRoutes.postSign
 )
 
 UserModel.find({ email: "admin@gmail.com", password: "123" }).then(user => {
