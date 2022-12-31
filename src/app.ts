@@ -15,9 +15,9 @@ app.set('views', path.join(path.resolve('./src'), '/views'))
 app.use(express.static(path.join(path.resolve('./src'), '/public')))
 
 // Routes
-import { homeRoutes } from './routes/routes'
+import { homeRoutes,userRoutes } from './routes/routes'
 
-app.use('/',homeRoutes.getHome)
+app.use('/',homeRoutes.getHome,userRoutes.getSign,userRoutes.getLogin)
 
 
 

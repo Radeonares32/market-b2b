@@ -5,3 +5,4 @@ const app = express.Router()
 import { home } from '../controllers/controllers'
 
 export const getHome = app.get('/',home.getHome)
+
