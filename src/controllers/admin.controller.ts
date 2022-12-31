@@ -10,7 +10,7 @@ export const getHome: Handler = (req, res) => {
         res.render('admin/index')
     }
     else {
-        res.redirect('/admin?message=reqSign')
+        res.redirect('/admin/sign?message=reqSign')
     }
 }
 export const getSign: Handler = (req, res) => {
