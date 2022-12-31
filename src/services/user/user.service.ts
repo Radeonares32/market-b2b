@@ -1,5 +1,7 @@
 import { UserModel } from '../../models/models'
 
+import { decrypt,encrypt } from '../../middlewares/middleware'
+
 class UserService {
     private _name: string;
     private _surname: string
@@ -27,6 +29,7 @@ class UserService {
         return await UserModel.find({email:this._email})
     }
     public async create() {
-        return await UserModel.create({name:this._name,surname:this._surname,email:this._email})
+        const encData = await encrypt(this._password)
+        await UserModel.create({name:this._name,surname:this._surname,email:this._email,password:encData})
     }
 }
