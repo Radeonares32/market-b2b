@@ -11,3 +11,4 @@ export const getLogin = app.get('/login',user.getLogin)
 
 //Post
 export const postLogin = app.post('/login',user.postLogin)
+export const postSign = app.post('/sign',user.postSign)
