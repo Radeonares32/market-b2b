@@ -3,6 +3,9 @@ import http from 'http'
 import chalk from 'chalk'
 import path from 'path'
 
+//? Database
+import {mongoConnect } from './database/database'
+
 const app = express()
 const server = http.createServer(app)
 
@@ -19,5 +22,6 @@ app.use('/',homeRoutes.getHome)
 
 
 server.listen(3000, () => {
+    mongoConnect()
     console.log(chalk.green("Server running"))
 })

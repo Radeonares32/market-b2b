@@ -1,1 +1,1 @@
-export {  } from './Mongo.db'
+export { mongoConnect } from './Mongo.db'
