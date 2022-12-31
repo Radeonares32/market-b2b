@@ -28,6 +28,10 @@ export class UserService {
     public async find() {
         return await UserModel.find({email:this._email})
     }
+    public async sign(hash:string){
+        const decData = await decrypt(this._password,hash)
+        return await UserModel.find({email:this._email,password:decData})
+    }
     public async create() {
         const encData = await encrypt(this._password)
         await UserModel.create({name:this._name,surname:this._surname,email:this._email,password:encData})
