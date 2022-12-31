@@ -1,8 +1,30 @@
 import { Handler } from 'express'
 
-export const getSign:Handler = (req,res) => {
+//Services
+import { userServices } from '../services/services'
+
+export const getSign: Handler = async (req, res) => {
     res.render('home/signin')
+    const User = new userServices.UserService("", "", "bugra@gmail.com")
+    const user = await User.find()
+    if (user.length > 0) {
+        
+    }
+    else {
+
+    }
 }
-export const getLogin:Handler = (req,res) => {
+export const getLogin: Handler = (req, res) => {
     res.render('home/login')
+}
+export const postLogin: Handler = async (req, res) => {
+    const { name, surname, email, password, passwordRepeat } = req.body
+    if (password === passwordRepeat) {
+        const User = new userServices.UserService(name, surname, email, password)
+        await User.create()
+        res.redirect('/sign?message=lsuccess')
+    }
+    else {
+        res.redirect('/login?message=noMatch')
+    }
 }
