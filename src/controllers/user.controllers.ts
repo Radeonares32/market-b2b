@@ -8,9 +8,10 @@ export const getSign: Handler = async (req, res) => {
     const User = new userServices.UserService("", "", "bugra@gmail.com")
     const user = await User.find()
     if (user.length > 0) {
-        //@ts-ignore
+        
+       /*  //@ts-ignore
         req.session.user = user[0].name
-        res.redirect('/')
+        res.redirect('/') */
     }
     else {
         res.redirect('/sign?message=noUser')
