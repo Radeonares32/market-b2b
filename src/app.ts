@@ -19,7 +19,6 @@ app.use(session({
     secret: "radeonres",
     resave: false,
     saveUninitialized: true,
-    cookie: { secure: true }
 }))
 app.use(express.static(path.join(path.resolve('./src'), '/public')))
 app.use(express.json())

@@ -7,6 +7,9 @@ export const getSign: Handler = async (req, res) => {
     res.render('home/signin')
 }
 export const getLogin: Handler = (req, res) => {
+     //@ts-ignore
+    const user = req.session.user
+    console.log(user)
     res.render('home/login')
 }
 export const postLogin: Handler = async (req, res) => {
