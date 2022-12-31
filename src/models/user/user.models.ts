@@ -6,14 +6,29 @@ const UserSchema = new Schema<User>({
     surname:String,
     email:String,
     password:String,
-    image:String,
+    image:{
+        type:String,
+        default:""
+    },
     isAdmin:{
         type:Boolean,
         default:false
     },
-    cardLastName:String,
-    cardName:String,
-    cardNumber:Number,
-    cardCvv:Number
+    cardLastName:{
+        type:String,
+        default:""
+    },
+    cardName:{
+        type:String,
+        default:""
+    },
+    cardNumber:{
+        type:Number,
+        default:0
+    },
+    cardCvv:{
+        type:Number,
+        default:0
+    }
 })
 export const UserModel = model('User',UserSchema)
