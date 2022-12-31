@@ -22,10 +22,8 @@ export const postLogin: Handler = async (req, res) => {
 }
 export const postSign: Handler = async (req, res) => {
     const { email, password } = req.body
-    console.log(req.body)
     const User = new userServices.UserService("", "", email, password)
-    const user = await User.find()
-    if (user.length > 0) {
+        const user = await User.find()
         const successUser = await User.sign(user[0].password)
         if (successUser.length > 0) {
             //@ts-ignore
@@ -33,10 +31,6 @@ export const postSign: Handler = async (req, res) => {
             res.redirect('/')
         }
         else {
-            res.redirect('/sign?message=noMatch')
+            res.redirect('/sign?message=unknow')
         }
-    }
-    else {
-        res.redirect('/sign?message=noUser')
-    }
 }

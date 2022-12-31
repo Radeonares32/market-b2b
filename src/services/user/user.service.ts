@@ -1,6 +1,6 @@
 import { UserModel } from '../../models/models'
 
-import { decrypt,encrypt } from '../../middlewares/middleware'
+import { decrypt, encrypt } from '../../middlewares/middleware'
 
 export class UserService {
     private _name?: string;
@@ -26,14 +26,20 @@ export class UserService {
         this._cardCvv = cardCvv
     }
     public async find() {
-        return await UserModel.find({email:this._email})
+        return await UserModel.find({ email: this._email })
     }
-    public async sign(hash:string){
-        const decData = await decrypt(this._password,hash)
-        return await UserModel.find({email:this._email,password:decData})
+    public async sign(hash: string) {
+        const decData = await decrypt(this._password, hash)
+        if (decData) {
+            return await UserModel.find({ email: this._email, password: hash })
+        }
+        else {
+            return []
+        }
+
     }
     public async create() {
         const encData = await encrypt(this._password)
-        await UserModel.create({name:this._name,surname:this._surname,email:this._email,password:encData})
+        await UserModel.create({ name: this._name, surname: this._surname, email: this._email, password: encData })
     }
 }
