@@ -37,3 +37,8 @@ export const postSign: Handler = async (req, res) => {
             res.redirect('/sign?message=unknow')
         }
 }
+export const getLogout:Handler = (req,res) => {
+    req.session.destroy(()=>{
+        res.redirect('/?message=logout')
+    })
+}
