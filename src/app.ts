@@ -28,9 +28,10 @@ import { homeRoutes, userRoutes } from './routes/routes'
 
 app.use('/',
     homeRoutes.getHome,
-    userRoutes.getSign
-    , userRoutes.getLogin,
-    userRoutes.postLogin
+    userRoutes.getSign,
+    userRoutes.getLogin,
+    userRoutes.postLogin,
+    userRoutes.getLogout
 )
 
 
