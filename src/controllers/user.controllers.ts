@@ -23,16 +23,14 @@ export const postLogin: Handler = async (req, res) => {
 export const postSign:Handler = async (req,res) => {
     const { email,password } = req.body
     console.log(req.body)
-    const User = new userServices.UserService("", "", "bugra@gmail.com")
+    const User = new userServices.UserService("", "", email,password)
     const user = await User.find()
-
-   /*  if (user.length > 0) {
-
+    if (user.length > 0) {
         //@ts-ignore
         req.session.user = user[0].name
         res.redirect('/')
     }
     else {
         res.redirect('/sign?message=noUser')
-    } */
+    }
 }
