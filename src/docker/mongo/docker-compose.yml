@@ -4,11 +4,11 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: radeonares
-      MONGO_INITDB_ROOT_PASSWORD: radeonares
-      MONGO_INITDB_DATABASE: radeonares
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_DATABASE: admin
     ports:
-      - "27019:27017"
+      - "27017:27017"
   mongo-express:
     image: mongo-express
     restart: always
