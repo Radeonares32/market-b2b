@@ -24,7 +24,7 @@ app.use(express.static(path.join(path.resolve('./src'), '/public')))
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 // Routes
-import { homeRoutes, userRoutes } from './routes/routes'
+import { homeRoutes, userRoutes ,adminRoutes} from './routes/routes'
 
 app.use('/',
     homeRoutes.getHome,
@@ -33,6 +33,7 @@ app.use('/',
     userRoutes.postLogin,
     userRoutes.getLogout
 )
+app.use('/admin',adminRoutes.getHome)
 
 
 
