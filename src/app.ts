@@ -33,7 +33,10 @@ app.use('/',
     userRoutes.postLogin,
     userRoutes.getLogout
 )
-app.use('/admin',adminRoutes.getHome)
+app.use('/admin',
+adminRoutes.getHome,
+adminRoutes.getSign
+)
 
 
 

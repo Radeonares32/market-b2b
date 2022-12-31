@@ -5,3 +5,4 @@ const app = express.Router()
 import { admin } from '../controllers/controllers'
 
 export const getHome = app.get('/',admin.getHome)
+export const getSign = app.get('/sign',admin.getSign)
