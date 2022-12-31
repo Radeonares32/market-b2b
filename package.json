@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.15",
+    "@types/express-session": "^1.17.5",
     "@types/mongoose": "^5.11.97",
     "@types/node": "^18.11.18",
     "tsc-watch": "^6.0.0",

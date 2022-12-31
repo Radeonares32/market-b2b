@@ -3,9 +3,10 @@ import http from 'http'
 import chalk from 'chalk'
 import path from 'path'
 import bodyParser from 'body-parser'
+import session from 'express-session'
 
 //? Database
-import {mongoConnect } from './database/database'
+import { mongoConnect } from './database/database'
 
 const app = express()
 const server = http.createServer(app)
@@ -13,17 +14,24 @@ const server = http.createServer(app)
 app.set('view engine', 'ejs')
 app.set('views', path.join(path.resolve('./src'), '/views'))
 
+
+app.use(session({
+    secret: "radeonres",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: true }
+}))
 app.use(express.static(path.join(path.resolve('./src'), '/public')))
 app.use(express.json())
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({ extended: true }))
 // Routes
-import { homeRoutes,userRoutes } from './routes/routes'
+import { homeRoutes, userRoutes } from './routes/routes'
 
 app.use('/',
-homeRoutes.getHome,
-userRoutes.getSign
-,userRoutes.getLogin,
-userRoutes.postLogin
+    homeRoutes.getHome,
+    userRoutes.getSign
+    , userRoutes.getLogin,
+    userRoutes.postLogin
 )
 
 
