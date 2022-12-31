@@ -7,8 +7,8 @@ export const getHome: Handler = async (req, res) => {
     //@ts-ignore
     const admin = req.session.admin
     if(admin) {
-       const user = await UserModel.find()
-        res.render('admin/index',{admin,user})
+       const users = await UserModel.find()
+        res.render('admin/index',{admin,users})
     }
     else {
         res.redirect('/admin/sign?message=reqSign')
