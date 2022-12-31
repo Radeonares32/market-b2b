@@ -20,15 +20,21 @@ export const postLogin: Handler = async (req, res) => {
         res.redirect('/login?message=noMatch')
     }
 }
-export const postSign:Handler = async (req,res) => {
-    const { email,password } = req.body
+export const postSign: Handler = async (req, res) => {
+    const { email, password } = req.body
     console.log(req.body)
-    const User = new userServices.UserService("", "", email,password)
+    const User = new userServices.UserService("", "", email, password)
     const user = await User.find()
     if (user.length > 0) {
-        //@ts-ignore
-        req.session.user = user[0].name
-        res.redirect('/')
+        const successUser = await User.sign(user[0].password)
+        if (successUser.length > 0) {
+            //@ts-ignore
+            req.session.user = user[0].name
+            res.redirect('/')
+        }
+        else {
+            res.redirect('/sign?message=noMatch')
+        }
     }
     else {
         res.redirect('/sign?message=noUser')
