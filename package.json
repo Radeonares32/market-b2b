@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "tsc-watch --onSuccess \" yarn start \"",
+    "build": "tsc-watch --onSuccess \" yarn start \"",
     "start": "node ./dist/app.js"
   },
   "type": "commonjs",
