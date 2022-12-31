@@ -5,6 +5,7 @@ import path from 'path'
 import bodyParser from 'body-parser'
 import session from 'express-session'
 
+import { UserModel } from './models/models'
 //? Database
 import { mongoConnect } from './database/database'
 
@@ -24,7 +25,7 @@ app.use(express.static(path.join(path.resolve('./src'), '/public')))
 app.use(express.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 // Routes
-import { homeRoutes, userRoutes ,adminRoutes} from './routes/routes'
+import { homeRoutes, userRoutes, adminRoutes } from './routes/routes'
 
 app.use('/',
     homeRoutes.getHome,
@@ -34,11 +35,20 @@ app.use('/',
     userRoutes.getLogout
 )
 app.use('/admin',
-adminRoutes.getHome,
-adminRoutes.getSign
+    adminRoutes.getHome,
+    adminRoutes.getSign
 )
 
-
+UserModel.find({ email: "admin@gmail.com", password: "123" }).then(user => {
+    if (user.length > 0) {
+        console.log(chalk.red('admin user already'))
+    }
+    else {
+        UserModel.create({ email: "admin@gmail.com", password: "123" }).then(() => {
+            console.log(chalk.gray('admin user created'))
+        })
+    }
+})
 
 server.listen(3000, () => {
     mongoConnect()
