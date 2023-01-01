@@ -3,16 +3,16 @@ import { UserModel } from '../../models/models'
 import { decrypt, encrypt } from '../../middlewares/middleware'
 
 export class UserService {
-    private _name?: string;
-    private _surname?: string
-    private _email?: string
-    private _password?: string | any
-    private _image?: string
-    private _isAdmin?: boolean
-    private _cardName?: string
-    private _cardLastName?: string
-    private _cardNumber?: number
-    private _cardCvv?: number
+    readonly _name?: string;
+    readonly _surname?: string
+    readonly _email?: string
+    readonly _password?: string | any
+    readonly _image?: string
+    readonly _isAdmin?: boolean
+    readonly _cardName?: string
+    readonly _cardLastName?: string
+    readonly _cardNumber?: number
+    readonly _cardCvv?: number
     constructor(name?: string, surname?: string, email?: string, password?: string, image?: string, isAdmin?: boolean, cardName?: string, cardLastName?: string, cardNumber?: number, cardCvv?: number) {
         this._name = name
         this._surname = surname
@@ -26,12 +26,12 @@ export class UserService {
         this._cardCvv = cardCvv
     }
     public async find() {
-        return await UserModel.find({ email: this._email })
+        return UserModel.find({ email: this._email })
     }
     public async sign(hash: string) {
         const decData = await decrypt(this._password, hash)
         if (decData) {
-            return await UserModel.find({ email: this._email, password: hash })
+            return  UserModel.find({ email: this._email, password: hash })
         }
         else {
             return []
