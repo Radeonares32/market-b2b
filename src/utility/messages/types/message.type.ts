@@ -1,10 +1,15 @@
+enum MessageEnum {
+    Information,
+    Success,
+    Error
+}
 export type MessageType = {
-    messageType:string,
+    messageType:MessageEnum,
     messageContext:string
 }
 
 export interface IMessage {
-    InformationMessage:(message:MessageType)=>MessageType
-    SuccessMessage:(message:MessageType)=>MessageType
-    ErrorMessage:(message:MessageType)=>MessageType
+    InformationMessage:()=>MessageType
+    SuccessMessage:()=>MessageType
+    ErrorMessage:()=>MessageType
 }

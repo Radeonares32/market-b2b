@@ -1,7 +1,22 @@
-import { IMessage ,MessageType} from './types/message.type'
+import { IMessage,MessageType } from './types/message.type'
 
 export class Message implements IMessage {
-    InformationMessage: (message: MessageType) => MessageType;
-    SuccessMessage: (message: MessageType) => MessageType;
-    ErrorMessage: (message: MessageType) => MessageType;
+    private messageType:string
+    private messageContext:string
+    constructor(messageType:string,messageContext:string){
+        this.messageType = messageType
+        this.messageContext = messageContext
+    }
+    public InformationMessage() {
+        return {
+            messageType:this.messageType,
+            messageContext:this.messageContext
+        }
+    }
+    public SuccessMessage: () => MessageType;
+    public ErrorMessage: () => MessageType;
+
 }
+
+const x = new Message()
+const y = x.InformationMessage({messageType:"",messageContext:""})
