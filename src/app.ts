@@ -41,17 +41,6 @@ app.use('/admin',
     adminRoutes.getLogout
 )
 
-UserModel.find({ email: "admin@gmail.com", password: "123" }).then(user => {
-    if (user.length > 0) {
-        console.log(chalk.red('admin user already'))
-    }
-    else {
-        UserModel.create({ email: "admin@gmail.com", password: "123" }).then(() => {
-            console.log(chalk.gray('admin user created'))
-        })
-    }
-})
-
 server.listen(3000, () => {
     mongoConnect()
     console.log(chalk.green("Server running"))
