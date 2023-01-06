@@ -1,11 +1,6 @@
-
 export type MessageType = {
-    messageType:string,
+    messageType:MessageTypes,
     messageContext:string
 }
 
-export interface IMessage {
-    InformationMessage:(message: MessageType)=> MessageType
-    SuccessMessage:()=>MessageType
-    ErrorMessage:()=>MessageType
-}
+export type MessageTypes = "SUCCESS" | "INFORMATION" | "ERROR"
