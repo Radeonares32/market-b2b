@@ -9,7 +9,17 @@
 </head>
 <body>
     <main class="main">
-        <div class="alert alert-primary text-center">a</div>
+        <% if(message) { %>
+            <% if(message.messageType === "SUCCESS") { %>
+                <div class="alert alert-success text-center"><%= message.messageContext  %> </div>
+            <% } %> 
+            <% if(message.messageType === "INFORMATION") { %>
+                <div class="alert alert-primary text-center"><%= message.messageContext %> </div>
+            <% } %>
+            <% if(message.messageType === "ERROR") { %>
+                <div class="alert alert-danger text-center"><%= message.messageContext %> </div>
+            <% } %>    
+            <% } %>
         <div class="container">
             <section class="wrapper">
                 <div class="heading">
