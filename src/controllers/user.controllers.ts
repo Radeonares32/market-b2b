@@ -9,7 +9,7 @@ import { Messages } from '../utility/utility'
 export const getSign: Handler = async (req, res) => {
     res.render('home/signin')
 }
-export const getLogin: Handler = (req, res) => {
+export const getSignup: Handler = (req, res) => {
      //@ts-ignore
     const user = req.session.user
     const { message }:any = req.query
@@ -17,7 +17,7 @@ export const getLogin: Handler = (req, res) => {
 
    res.render('home/signup',{message:messageService.Messages(message)})
 }
-export const postLogin: Handler = async (req, res) => {
+export const postSignup: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body
     if (password === passwordRepeat) {
         const User = new userServices.UserService(name, surname, email, password)
