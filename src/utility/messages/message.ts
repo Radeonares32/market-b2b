@@ -27,4 +27,3 @@ export class Message implements IMessage {
         }
     }
 }
-const m = new Message("SUCCESS", "asd")
