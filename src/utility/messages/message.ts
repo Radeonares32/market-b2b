@@ -1,5 +1,5 @@
 import { IMessage } from './interface/message.interface'
-
+import { MessageType } from './types/message.type'
 export class Message implements IMessage {
     public Messages(queryMessage: string) {
         const validationMessage = this.validationMessage(queryMessage)
@@ -8,10 +8,13 @@ export class Message implements IMessage {
         }
     }
     private validationMessage(queryMessage: string) {
-        let message: string = ""
+        let message = {}
         if (queryMessage) {
             if (queryMessage === "lsuccess") {
-                message = "login success"
+                message = {
+                    context:"login success",
+                    type:""
+                }
             }
             else if (queryMessage === "noMatch") {
                 message = "password not match"
