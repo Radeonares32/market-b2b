@@ -30,8 +30,8 @@ import { homeRoutes, userRoutes, adminRoutes } from './routes/routes'
 app.use('/',
     homeRoutes.getHome,
     userRoutes.getSign,
-    userRoutes.getLogin,
-    userRoutes.postLogin,
+    userRoutes.getSignup,
+    userRoutes.postSignup,
     userRoutes.getLogout
 )
 app.use('/admin',
