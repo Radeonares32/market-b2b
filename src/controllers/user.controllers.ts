@@ -25,7 +25,7 @@ export const postSignup: Handler = async (req, res) => {
         res.redirect('/sign?message=lsuccess')
     }
     else {
-        res.redirect('/login?message=noMatch')
+        res.redirect('/signup?message=noMatch')
     }
 }
 export const postSign: Handler = async (req, res) => {
@@ -39,7 +39,7 @@ export const postSign: Handler = async (req, res) => {
             res.redirect('/')
         }
         else {
-            res.redirect('/sign?message=unknow')
+            res.redirect('/signup?message=unknow')
         }
 }
 export const getLogout:Handler = (req,res) => {
