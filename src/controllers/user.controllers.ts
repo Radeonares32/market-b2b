@@ -12,8 +12,10 @@ export const getSign: Handler = async (req, res) => {
 export const getLogin: Handler = (req, res) => {
      //@ts-ignore
     const user = req.session.user
-    const { message } = req.query
-   res.render('home/login',{message})
+    const { message }:any = req.query
+    const messageService = new Messages.Message()
+
+   res.render('home/login',{message:messageService.Messages(message)})
 }
 export const postLogin: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body

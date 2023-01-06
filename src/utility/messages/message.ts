@@ -1,16 +1,10 @@
 import { IMessage } from './interface/message.interface'
-import { MessageType, MessageTypes } from './types/message.type'
-
 
 export class Message implements IMessage {
-    constructor(readonly messageType: MessageTypes) {
-        this.messageType = messageType
-    }
-    public Messages(queryMessage: string): MessageType {
+    public Messages(queryMessage: string) {
         const validationMessage = this.validationMessage(queryMessage)
         return {
-            messageContext:validationMessage,
-            messageType: this.messageType
+            messageContext:validationMessage
         }
     }
     private validationMessage(queryMessage: string) {
