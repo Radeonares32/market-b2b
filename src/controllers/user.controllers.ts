@@ -15,7 +15,7 @@ export const getLogin: Handler = (req, res) => {
     const { message }:any = req.query
     const messageService = new Messages.Message()
 
-   res.render('home/login',{message:messageService.Messages(message)})
+   res.render('home/signup',{message:messageService.Messages(message)})
 }
 export const postLogin: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body
