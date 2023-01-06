@@ -8,22 +8,31 @@ export class Message implements IMessage {
         }
     }
     private validationMessage(queryMessage: string) {
-        let message = {}
+        let message:MessageType = {messageContext:"",messageType:"INFORMATION"}
         if (queryMessage) {
             if (queryMessage === "lsuccess") {
                 message = {
-                    context:"login success",
-                    type:""
+                    messageContext:"login success",
+                    messageType:"SUCCESS"
                 }
             }
             else if (queryMessage === "noMatch") {
-                message = "password not match"
+                message = {
+                    messageContext:"password not match",
+                    messageType:"INFORMATION"
+                }
             }
             else if (queryMessage === "unknow") {
-                message = "unknow error"
+                message = {
+                    messageContext:"unknow error",
+                    messageType:"ERROR"
+                }
             }
             else if (queryMessage === "logout") {
-                message = "logout success"
+                message = {
+                    messageContext:"logout success",
+                    messageType:"SUCCESS"
+                }
             }
         }
         else {
