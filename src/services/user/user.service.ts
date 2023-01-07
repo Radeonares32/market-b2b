@@ -3,16 +3,16 @@ import { UserModel } from '../../models/models'
 import { decrypt, encrypt } from '../../middlewares/middleware'
 
 export class UserService {
-    readonly _name?: string;
-    readonly _surname?: string
-    readonly _email?: string
-    readonly _password?: string | any
-    readonly _image?: string
-    readonly _isAdmin?: boolean
-    readonly _cardName?: string
-    readonly _cardLastName?: string
-    readonly _cardNumber?: number
-    readonly _cardCvv?: number
+    private readonly _name?: string;
+    private readonly _surname?: string
+    private readonly _email?: string
+    private readonly _password?: string | any
+    private readonly _image?: string
+    private readonly _isAdmin?: boolean
+    private readonly _cardName?: string
+    private readonly _cardLastName?: string
+    private readonly _cardNumber?: number
+    private readonly _cardCvv?: number
     constructor(name?: string, surname?: string, email?: string, password?: string, image?: string, isAdmin?: boolean, cardName?: string, cardLastName?: string, cardNumber?: number, cardCvv?: number) {
         this._name = name
         this._surname = surname
