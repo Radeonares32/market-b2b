@@ -1,14 +1,23 @@
 export class Validitions {
-    public passwordValidation(password: string, passwordRepeat: string): boolean {
+    public passwordValidation(password: string, passwordRepeat: string): {} {
         if (password === "" && passwordRepeat === "") {
-            return false
+            return {
+                type:"passEmpty",
+                isValid:false
+            }
         }
         else {
             if (password !== passwordRepeat) {
-                return false
+                return {
+                    type:"noMatch",
+                    isValid:false
+                }
             }
             else {
-                return true
+                return {
+                    type:"validPass",
+                    isValid:true
+                }
             }
         }
     }
