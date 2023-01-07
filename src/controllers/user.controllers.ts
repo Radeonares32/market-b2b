@@ -4,17 +4,17 @@ import { Handler } from 'express'
 import { userServices } from '../services/services'
 
 //Utility
-import { Messages } from '../utility/utility'
+import { Messages, Validitions } from '../utility/utility'
 
 export const getSign: Handler = async (req, res) => {
     res.render('home/signin')
 }
 export const getSignup: Handler = (req, res) => {
-     //@ts-ignore
+    //@ts-ignore
     const user = req.session.user
-    const { message }:any = req.query
+    const { message }: any = req.query
     const messageService = new Messages.Message()
-   res.render('home/signup',{message:messageService.Messages(message).messageContext})
+    res.render('home/signup', { message: messageService.Messages(message).messageContext })
 }
 export const postSignup: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body
@@ -28,12 +28,15 @@ export const postSignup: Handler = async (req, res) => {
     }
 }
 export const postSign: Handler = async (req, res) => {
-    const { email, password,passwordRepeat } = req.body
+    const { email, password, passwordRepeat } = req.body
     const User = new userServices.UserService("", "", email, password)
-        const user = await User.find()
-        if(user.length > 0){
-          res.redirect('/signup?message=alreadyUser')
-        }else {
+    const passwordValid = new Validitions.Validitions()
+    
+    const user = await User.find()
+    if(passwordValid.passwordValidation(password,passwordRepeat)) {
+        if (user.length > 0) {
+            res.redirect('/signup?message=alreadyUser')
+        } else {
             const successUser = await User.sign(user[0].password)
             if (successUser.length > 0) {
                 //@ts-ignore
@@ -44,9 +47,14 @@ export const postSign: Handler = async (req, res) => {
                 res.redirect('/signup?message=unknow')
             }
         }
+    }
+    else {
+        res.redirect('/signup?message=noMatch')
+    }
+    
 }
-export const getLogout:Handler = (req,res) => {
-    req.session.destroy(()=>{
+export const getLogout: Handler = (req, res) => {
+    req.session.destroy(() => {
         res.redirect('/?message=logout')
     })
 }
