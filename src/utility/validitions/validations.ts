@@ -1,5 +1,6 @@
+import { passwordValidationType } from './type/validation.type'
 export class Validitions {
-    public passwordValidation(password: string, passwordRepeat: string): {} {
+    public passwordValidation(password: string, passwordRepeat: string): passwordValidationType {
         if (password === "" && passwordRepeat === "") {
             return {
                 type:"passEmpty",
