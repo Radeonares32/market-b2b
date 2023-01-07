@@ -4,35 +4,41 @@ export class Message implements IMessage {
     public Messages(queryMessage: string) {
         const validationMessage = this.validationMessage(queryMessage)
         return {
-            messageContext:validationMessage
+            messageContext: validationMessage
         }
     }
     private validationMessage(queryMessage: string) {
-        let message:MessageType = {messageContext:"",messageType:"INFORMATION"}
+        let message: MessageType = { messageContext: "", messageType: "INFORMATION" }
         if (queryMessage) {
             if (queryMessage === "lsuccess") {
                 message = {
-                    messageContext:"login success",
-                    messageType:"SUCCESS"
+                    messageContext: "login success",
+                    messageType: "SUCCESS"
                 }
             }
             else if (queryMessage === "noMatch") {
                 message = {
-                    messageContext:"password not match",
-                    messageType:"INFORMATION"
+                    messageContext: "password not match",
+                    messageType: "INFORMATION"
                 }
             }
             else if (queryMessage === "unknow") {
                 message = {
-                    messageContext:"unknow error",
-                    messageType:"ERROR"
+                    messageContext: "unknow error",
+                    messageType: "ERROR"
                 }
             }
             else if (queryMessage === "logout") {
                 message = {
-                    messageContext:"logout success",
-                    messageType:"SUCCESS"
+                    messageContext: "logout success",
+                    messageType: "SUCCESS"
                 }
+            }
+            else if (queryMessage === "alreadyUser") {
+                message = {
+                    messageContext: "Already user",
+                    messageType: "INFORMATION"
+                } 
             }
         }
         else {
