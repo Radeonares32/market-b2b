@@ -31,14 +31,18 @@ export const postSign: Handler = async (req, res) => {
     const { email, password } = req.body
     const User = new userServices.UserService("", "", email, password)
         const user = await User.find()
-        const successUser = await User.sign(user[0].password)
-        if (successUser.length > 0) {
-            //@ts-ignore
-            req.session.user = user[0].name
-            res.redirect('/')
-        }
-        else {
-            res.redirect('/signup?message=unknow')
+        if(user.length > 0){
+          res.redirect('/signup?message=alreadyUser')
+        }else {
+            const successUser = await User.sign(user[0].password)
+            if (successUser.length > 0) {
+                //@ts-ignore
+                req.session.user = user[0].name
+                res.redirect('/')
+            }
+            else {
+                res.redirect('/signup?message=unknow')
+            }
         }
 }
 export const getLogout:Handler = (req,res) => {
