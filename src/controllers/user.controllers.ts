@@ -28,7 +28,7 @@ export const postSignup: Handler = async (req, res) => {
     }
 }
 export const postSign: Handler = async (req, res) => {
-    const { email, password } = req.body
+    const { email, password,passwordRepeat } = req.body
     const User = new userServices.UserService("", "", email, password)
         const user = await User.find()
         if(user.length > 0){
