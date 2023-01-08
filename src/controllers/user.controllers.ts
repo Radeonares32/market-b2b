@@ -16,12 +16,12 @@ export const getSignup: Handler = (req, res) => {
     const user = req.session.user
     const { message }: any = req.query
     const messageService = new Messages.Message()
-    console.log(messageService.Messages(message).messageContext)
     res.render('home/signup', { message: messageService.Messages(message).messageContext })
 }
 export const postSignup: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body
-    if (password === passwordRepeat) {
+    const passValid = new Validitions.Validitions().passwordValidation(password,passwordRepeat)
+    if (passValid.isValid) {
         const User = new userServices.UserService(name, surname, email, password)
         await User.create()
         res.redirect('/sign?message=lsuccess')
