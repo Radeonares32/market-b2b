@@ -7,13 +7,16 @@ import { userServices } from '../services/services'
 import { Messages, Validitions } from '../utility/utility'
 
 export const getSign: Handler = async (req, res) => {
-    res.render('home/signin')
+    const { message }: any = req.query
+    const messageService = new Messages.Message()
+    res.render('home/signin', { message: messageService.Messages(message).messageContext })
 }
 export const getSignup: Handler = (req, res) => {
     //@ts-ignore
     const user = req.session.user
     const { message }: any = req.query
     const messageService = new Messages.Message()
+    console.log(messageService.Messages(message).messageContext)
     res.render('home/signup', { message: messageService.Messages(message).messageContext })
 }
 export const postSignup: Handler = async (req, res) => {
@@ -43,12 +46,12 @@ export const postSign: Handler = async (req, res) => {
                 res.redirect('/')
             }
             else {
-                res.redirect('/signup?message=unknow')
+                res.redirect('/sign?message=unknow')
             }
         }
     }
     else {
-        res.redirect(`/signup?message=${passwordValid.type}`)
+        res.redirect(`/sign?message=${passwordValid.type}`)
     }
     
 }
