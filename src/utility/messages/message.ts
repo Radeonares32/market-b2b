@@ -8,6 +8,7 @@ export class Message implements IMessage {
         }
     }
     private validationMessage(queryMessage: string) {
+        
         let message: MessageType = { messageContext: "", messageType: "INFORMATION" }
         switch (queryMessage) {
             case "lsuccess":
@@ -21,21 +22,25 @@ export class Message implements IMessage {
                     messageContext: "password not match",
                     messageType: "INFORMATION"
                 }
+                break;
             case "unknow":
                 message = {
                     messageContext: "unknow error",
                     messageType: "ERROR"
                 }
+                break;
             case "logout":
                 message = {
                     messageContext: "logout success",
                     messageType: "SUCCESS"
                 }
+                break;
             case "alreadyUser":
                 message = {
                     messageContext: "Already user",
                     messageType: "INFORMATION"
                 }
+                break;
             default:
                 return new Error("Not String").message
         }
