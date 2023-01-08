@@ -9,40 +9,35 @@ export class Message implements IMessage {
     }
     private validationMessage(queryMessage: string) {
         let message: MessageType = { messageContext: "", messageType: "INFORMATION" }
-        if (queryMessage) {
-            if (queryMessage === "lsuccess") {
+        switch (queryMessage) {
+            case "lsuccess":
                 message = {
                     messageContext: "login success",
                     messageType: "SUCCESS"
                 }
-            }
-            else if (queryMessage === "noMatch") {
+                break;
+            case "noMatch":
                 message = {
                     messageContext: "password not match",
                     messageType: "INFORMATION"
                 }
-            }
-            else if (queryMessage === "unknow") {
+            case "unknow":
                 message = {
                     messageContext: "unknow error",
                     messageType: "ERROR"
                 }
-            }
-            else if (queryMessage === "logout") {
+            case "logout":
                 message = {
                     messageContext: "logout success",
                     messageType: "SUCCESS"
                 }
-            }
-            else if (queryMessage === "alreadyUser") {
+            case "alreadyUser":
                 message = {
                     messageContext: "Already user",
                     messageType: "INFORMATION"
-                } 
-            }
-        }
-        else {
-            return new Error("Not String").message
+                }
+            default:
+                return new Error("Not String").message
         }
         return message
     }
