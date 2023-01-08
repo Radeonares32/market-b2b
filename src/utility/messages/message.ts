@@ -41,6 +41,18 @@ export class Message implements IMessage {
                     messageType: "INFORMATION"
                 }
                 break;
+            case "passEmpty":
+                message = {
+                    messageContext: "Password field empty",
+                    messageType: "ERROR"
+                }
+                break;
+                case  "validPass":
+                    message = {
+                        messageContext: "password match",
+                        messageType: "SUCCESS"
+                    }
+                break;
             default:
                 return new Error("Not String").message
         }
