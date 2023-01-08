@@ -30,10 +30,9 @@ export const postSignup: Handler = async (req, res) => {
 export const postSign: Handler = async (req, res) => {
     const { email, password, passwordRepeat } = req.body
     const User = new userServices.UserService("", "", email, password)
-    const passwordValid = new Validitions.Validitions()
-    
+    const passwordValid = new Validitions.Validitions().passwordValidation(password,passwordRepeat)
     const user = await User.find()
-    if(passwordValid.passwordValidation(password,passwordRepeat)) {
+    if(passwordValid.isValid) {
         if (user.length > 0) {
             res.redirect('/signup?message=alreadyUser')
         } else {
@@ -49,7 +48,7 @@ export const postSign: Handler = async (req, res) => {
         }
     }
     else {
-        res.redirect('/signup?message=noMatch')
+        res.redirect(`/signup?message=${passwordValid.type}`)
     }
     
 }
