@@ -9,14 +9,14 @@ import { Messages, Validitions } from '../utility/utility'
 export const getSign: Handler = async (req, res) => {
     const { message }: any = req.query
     const messageService = new Messages.Message()
-    res.render('home/signin', { message: messageService.Messages(message).messageContext })
+    res.render('home/signin', { message: messageService.Messages(message).userValidation })
 }
 export const getSignup: Handler = (req, res) => {
     //@ts-ignore
     const user = req.session.user
     const { message }: any = req.query
     const messageService = new Messages.Message()
-    res.render('home/signup', { message: messageService.Messages(message).messageContext })
+    res.render('home/signup', { message: messageService.Messages(message).userValidation })
 }
 export const postSignup: Handler = async (req, res) => {
     const { name, surname, email, password, passwordRepeat } = req.body
