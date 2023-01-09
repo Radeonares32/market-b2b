@@ -2,7 +2,7 @@ import { IMessage } from './interface/message.interface'
 import { MessageType } from './types/message.type'
 export class Message implements IMessage {
     public Messages(queryMessage: string) {
-        const validationMessage = this.validationMessage(queryMessage)
+        const validationMessage = this.userValidationMessage(queryMessage)
         return {
             messageContext: validationMessage
         }
