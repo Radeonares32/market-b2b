@@ -7,7 +7,7 @@ export class Message implements IMessage {
             messageContext: validationMessage
         }
     }
-    private validationMessage(queryMessage: string) {
+    private userValidationMessage(queryMessage: string) {
         
         let message: MessageType = { messageContext: "", messageType: "INFORMATION" }
         switch (queryMessage) {
@@ -57,5 +57,8 @@ export class Message implements IMessage {
                 return new Error("Not String").message
         }
         return message
+    }
+    private ProductValidationMessage() {
+
     }
 }
