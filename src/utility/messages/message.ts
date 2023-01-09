@@ -4,7 +4,7 @@ export class Message implements IMessage {
     public Messages(queryMessage: string) {
         const userValidationMessage = this.userValidationMessage(queryMessage)
         return {
-            messageContext: userValidationMessage
+            userValidation: userValidationMessage
         }
     }
     private userValidationMessage(queryMessage: string) {
